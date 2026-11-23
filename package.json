@@ -1,0 +1,30 @@
+{
+  "name": "md2telehtml",
+  "version": "0.1.0",
+  "description": "Convert Markdown to Telegram HTML, split into messages that fit.",
+  "type": "module",
+  "exports": "./index.js",
+  "types": "./index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "test": "node --test test.js"
+  },
+  "keywords": [
+    "telegram",
+    "markdown",
+    "html",
+    "grammy",
+    "bot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameforge/md2telehtml.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
