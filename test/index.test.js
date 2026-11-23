@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import {test} from "node:test";
-import {toTelegramHtml} from "./index.js";
+import {toTelegramHtml} from "../src/index.js";
 
 // Every part must fit and be valid HTML on its own, whatever the input.
 const parts = (markdown, limit) => {

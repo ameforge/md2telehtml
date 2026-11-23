@@ -14,17 +14,17 @@ for (const text of toTelegramHtml(answer)) {
 
 ## What it converts
 
-| Markdown | Telegram |
-| --- | --- |
-| `**bold**`, `__bold__` | `<b>` |
-| `*italic*`, `_italic_` | `<i>` |
-| `~~strike~~` | `<s>` |
-| `` `code` `` | `<code>` |
-| fenced code block | `<pre>`, with `language-x` when given |
-| table | `<pre>`, so the columns stay aligned |
-| `# Heading` | a bold line |
-| `[text](url)` | `<a>` |
-| `-`, `*` or `+` list item | a line starting with `-` |
+| Markdown                  | Telegram                              |
+| ------------------------- | ------------------------------------- |
+| `**bold**`, `__bold__`    | `<b>`                                 |
+| `*italic*`, `_italic_`    | `<i>`                                 |
+| `~~strike~~`              | `<s>`                                 |
+| `` `code` ``              | `<code>`                              |
+| fenced code block         | `<pre>`, with `language-x` when given |
+| table                     | `<pre>`, so the columns stay aligned  |
+| `# Heading`               | a bold line                           |
+| `[text](url)`             | `<a>`                                 |
+| `-`, `*` or `+` list item | a line starting with `-`              |
 
 Everything else stays as escaped text. A marker without its pair, such as `**password: [masked]`, stays as it is, so the output never has an unclosed tag.
 

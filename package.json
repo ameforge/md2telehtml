@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "description": "Convert Markdown to Telegram HTML, split into messages that fit.",
   "type": "module",
-  "exports": "./index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "types": "./index.d.ts",
   "files": [
-    "index.js",
+    "dist",
     "index.d.ts"
   ],
   "scripts": {
-    "test": "node --test test.js"
+    "build": "rsbuild build",
+    "lint": "biome migrate --write && biome check --write",
+    "prepare": "pnpm build",
+    "test": "node --test"
   },
   "keywords": [
     "telegram",
@@ -26,5 +34,10 @@
   "license": "MIT",
   "engines": {
     "node": ">=18"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "@rsbuild/core": "^2.3.3"
   }
 }
