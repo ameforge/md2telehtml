@@ -12,6 +12,36 @@ const HEADING = /^\s{0,3}#{1,6}\s+(.*?)[\s#]*$/;
 const BULLET = /^(\s*)[-*+]\s+(.*)$/;
 const SENTENCE_END = /(?<=[.!?…])\s+/;
 
+const TABLE_RULE = /^[\s|:-]*-[\s|:-]*$/;
+
+// Telegram has no tables, so the cells are padded into columns for <pre>,
+// where emphasis markers would show as raw characters.
+// shortcut: an escaped \| splits its cell, handle it if a table ever needs one.
+const alignTable = (rows) => {
+  const cells = rows.map((row) =>
+    TABLE_RULE.test(row)
+      ? undefined
+      : row
+          .trim()
+          .replace(/^\||\|$/g, "")
+          .split("|")
+          .map((cell) => cell.replace(/\*\*|__|~~|`/g, "").trim()),
+  );
+  const widths = [];
+  for (const row of cells) {
+    row?.forEach((cell, i) => {
+      widths[i] = Math.max(widths[i] ?? 0, [...cell].length);
+    });
+  }
+  const pad = (cell, i) => cell + " ".repeat(widths[i] - [...cell].length);
+  return cells.map(
+    (row) =>
+      `| ${widths
+        .map((width, i) => (row ? pad(row[i] ?? "", i) : "-".repeat(width)))
+        .join(" | ")} |`,
+  );
+};
+
 const isBalanced = (html) => {
   const open = [];
   for (const [, close, name] of html.matchAll(/<(\/?)(\w+)[^>]*>/g)) {
@@ -81,7 +111,7 @@ const parse = (markdown) => {
       while (i + 1 < lines.length && TABLE.test(lines[i + 1])) {
         body.push(lines[++i]);
       }
-      blocks.push({kind: "code", lang: "", lines: body});
+      blocks.push({kind: "code", lang: "", lines: alignTable(body)});
     } else if (line.trim() === "") {
       paragraph = undefined;
     } else if (paragraph) {

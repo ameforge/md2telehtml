@@ -50,10 +50,10 @@ test("converts the Markdown Claude writes", () => {
 test("puts code blocks and tables in pre, escaped", () => {
   assert.deepEqual(
     parts(
-      "Run:\n\n```js\nif (a < b && c) {}\n```\n\n| a | b |\n|---|---|\n| 1 | 2 |",
+      "Run:\n\n```js\nif (a < b && c) {}\n```\n\n| Kỳ hạn | Lãi |\n|:---|---:|\n| **6 tháng** | **9,6%** |\n| Linh hoạt | < 9,5% |",
     ),
     [
-      'Run:\n\n<pre><code class="language-js">if (a &lt; b &amp;&amp; c) {}</code></pre>\n\n<pre>| a | b |\n|---|---|\n| 1 | 2 |</pre>',
+      'Run:\n\n<pre><code class="language-js">if (a &lt; b &amp;&amp; c) {}</code></pre>\n\n<pre>| Kỳ hạn    | Lãi    |\n| --------- | ------ |\n| 6 tháng   | 9,6%   |\n| Linh hoạt | &lt; 9,5% |</pre>',
     ],
   );
 });

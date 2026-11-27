@@ -21,7 +21,7 @@ for (const text of toTelegramHtml(answer)) {
 | `~~strike~~`              | `<s>`                                 |
 | `` `code` ``              | `<code>`                              |
 | fenced code block         | `<pre>`, with `language-x` when given |
-| table                     | `<pre>`, so the columns stay aligned  |
+| table                     | `<pre>` with the columns padded       |
 | `# Heading`               | a bold line                           |
 | `[text](url)`             | `<a>`                                 |
 | `-`, `*` or `+` list item | a line starting with `-`              |
